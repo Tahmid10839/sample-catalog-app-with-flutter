@@ -19,7 +19,8 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Container(
           child: Text(
-              "Welcome to the $days days of first app by $name. The pi is $pi"),
+              "Welcome to the $days days of first app by $name. The pi is $pi " +
+                  context.runtimeType.toString()),
         ),
       ),
       drawer: MyDrawer(),
