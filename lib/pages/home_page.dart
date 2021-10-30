@@ -42,11 +42,50 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-            ? ListView.builder(
+            ?
+            // ListView.builder(
+            //     itemCount: CatalogModel.items.length,
+            //     itemBuilder: (context, index) => ItemWidget(
+            //           item: CatalogModel.items[index],
+            //         ))
+            GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                ),
                 itemCount: CatalogModel.items.length,
-                itemBuilder: (context, index) => ItemWidget(
-                      item: CatalogModel.items[index],
-                    ))
+                itemBuilder: (context, index) {
+                  final items = CatalogModel.items[index];
+                  return Card(
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: GridTile(
+                      header: Container(
+                        child: Text(
+                          items.name,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        padding: const EdgeInsets.all(16.0),
+                        decoration: const BoxDecoration(
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                      child: Image.network(items.image),
+                      footer: Container(
+                        child: Text(
+                          "\$ ${items.price}",
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        padding: const EdgeInsets.all(16.0),
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  );
+                })
             : const Center(
                 child: CircularProgressIndicator(),
               ),
