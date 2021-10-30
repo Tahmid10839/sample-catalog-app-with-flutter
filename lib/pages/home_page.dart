@@ -2,11 +2,28 @@ import 'package:catalog_app/models/catalog.dart';
 import 'package:catalog_app/widget/drawer.dart';
 import 'package:catalog_app/widget/item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'dart:convert';
 
-class HomePage extends StatelessWidget {
-  final int days = 30;
-  final String name = "Tahmid";
-  final num pi = 3.14;
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    final catalogJson =
+        await rootBundle.loadString("assets/files/catalog.json");
+    final decodedData = jsonDecode(catalogJson);
+    final productsData = decodedData['products'];
+    print(productsData);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +33,6 @@ class HomePage extends StatelessWidget {
         title: const Center(
             child: Text(
           "Catalog App",
-          // style: TextStyle(color: Colors.black),
         )),
       ),
       body: Padding(
