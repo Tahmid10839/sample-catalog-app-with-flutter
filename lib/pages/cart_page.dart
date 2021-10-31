@@ -9,8 +9,7 @@ class CartPage extends StatelessWidget {
       backgroundColor: context.canvasColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Center(
-            child: "Cart".text.color(context.accentColor).bold.xl2.make()),
+        title: Center(child: "Cart".text.bold.xl2.make()),
       ),
     );
   }

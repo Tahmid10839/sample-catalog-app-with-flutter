@@ -117,7 +117,9 @@ class _HomePageState extends State<HomePage> {
               if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                 CatalogList().pOnly(top: 16, bottom: 40).expand()
               else
-                const CircularProgressIndicator().centered().py16().expand(),
+                CircularProgressIndicator(
+                  color: context.accentColor,
+                ).centered().py16().expand(),
             ],
           ),
         ),

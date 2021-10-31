@@ -30,7 +30,10 @@ class MyTheme {
           color: Colors.black,
           elevation: 0.0,
           iconTheme: const IconThemeData(color: Colors.white),
-          titleTextStyle: Theme.of(context).textTheme.headline6,
+          titleTextStyle: Theme.of(context)
+              .textTheme
+              .headline6!
+              .copyWith(color: Colors.white),
         ),
       );
   static Color creamColor = const Color(0xfff5f5f5);
