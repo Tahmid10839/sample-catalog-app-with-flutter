@@ -1,9 +1,11 @@
 import 'package:catalog_app/models/catalog.dart';
+import 'package:catalog_app/utils/routes.dart';
 // import 'package:catalog_app/widget/drawer.dart';
 import 'package:catalog_app/widget/home_widgets/catalog_header.dart';
 import 'package:catalog_app/widget/home_widgets/catalog_list.dart';
 // import 'package:catalog_app/widget/item_widget.dart';
 import 'package:catalog_app/widget/themes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -95,15 +97,22 @@ class _HomePageState extends State<HomePage> {
       //     child: CircularProgressIndicator(),
       //   ),
       backgroundColor: MyTheme.creamColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.cartRoute);
+        },
+        backgroundColor: MyTheme.darkBluishColor,
+        child: const Icon(CupertinoIcons.cart),
+      ),
       body: SafeArea(
         child: Container(
-          padding: Vx.m24,
+          padding: Vx.m32,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CatalogHeader(),
               if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-                CatalogList().py16().expand()
+                CatalogList().pOnly(top: 16, bottom: 40).expand()
               else
                 const CircularProgressIndicator().centered().py16().expand(),
             ],
