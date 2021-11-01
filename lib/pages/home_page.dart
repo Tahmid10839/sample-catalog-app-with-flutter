@@ -111,7 +111,8 @@ class _HomePageState extends State<HomePage> {
         builder: (context, dynamic, VxStatus) {
           return FloatingActionButton(
             onPressed: () {
-              Navigator.pushNamed(context, MyRoutes.cartRoute);
+              // Navigator.pushNamed(context, MyRoutes.cartRoute);
+              context.vxNav.push(Uri.parse(MyRoutes.cartRoute));
             },
             backgroundColor: context.theme.buttonColor,
             child: const Icon(

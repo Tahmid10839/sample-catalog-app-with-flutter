@@ -1,4 +1,5 @@
 import 'package:catalog_app/models/cart.dart';
+import 'package:catalog_app/utils/routes.dart';
 import 'package:catalog_app/widget/home_widgets/add_to_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -20,12 +21,17 @@ class CatalogList extends StatelessWidget {
             itemBuilder: (context, index) {
               final catalog = CatalogModel.items[index];
               return InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HomeDetailPage(
-                                catalog: catalog,
-                              ))),
+                  // onTap: () => Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => HomeDetailPage(
+                  //               catalog: catalog,
+                  //             ))
+                  onTap: () => context.vxNav.push(
+                      Uri(
+                          path: MyRoutes.homeDetailRoute,
+                          queryParameters: {"id": catalog.id.toString()}),
+                      params: catalog),
                   child: CatalogItem(catalog: catalog));
             })
         : ListView.builder(
@@ -34,12 +40,17 @@ class CatalogList extends StatelessWidget {
             itemBuilder: (context, index) {
               final catalog = CatalogModel.items[index];
               return InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HomeDetailPage(
-                                catalog: catalog,
-                              ))),
+                  // onTap: () => Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => HomeDetailPage(
+                  //               catalog: catalog,
+                  //             ))),
+                  onTap: () => context.vxNav.push(
+                      Uri(
+                          path: MyRoutes.homeDetailRoute,
+                          queryParameters: {"id": catalog.id.toString()}),
+                      params: catalog),
                   child: CatalogItem(catalog: catalog));
             });
   }
